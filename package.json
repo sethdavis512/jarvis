@@ -1,0 +1,19 @@
+{
+    "name": "jarvis",
+    "version": "0.0.1",
+    "description": "A personal command line tool",
+    "main": "index.js",
+    "type": "module",
+    "bin": {
+        "jarvis": "./index.js"
+    },
+    "scripts": {
+        "plop": "plop"
+    },
+    "keywords": [],
+    "author": "Seth Davis",
+    "license": "ISC",
+    "devDependencies": {
+        "plop": "^3.1.1"
+    }
+}
