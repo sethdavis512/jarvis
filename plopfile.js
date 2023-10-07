@@ -1,19 +1,19 @@
-export default function (plop) {
-    plop.setGenerator('ts-component', {
-        description: 'A React component and unit test written in Typescript',
+export default function ({ setGenerator }) {
+    setGenerator('hello-world', {
+        description: 'First generator',
         prompts: [
             {
                 type: 'input',
                 name: 'name',
-                message: 'Component name'
+                message: 'Your name'
             }
         ],
         actions: [
             {
                 type: 'addMany',
-                destination: `${process.cwd()}/{{ pascalCase name }}`,
-                templateFiles: 'plop-templates/ts-component',
-                base: 'plop-templates/ts-component'
+                destination: process.cwd(),
+                templateFiles: 'plop-templates/hello-world',
+                base: 'plop-templates/hello-world'
             }
         ]
     });
