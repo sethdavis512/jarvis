@@ -1,0 +1,19 @@
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  return json({});
+};
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  return null;
+};
+
+export default function {{pascalCase name}}Route() {
+  const data = useLoaderData<typeof loader>();
+
+  return (
+    <div>{...}</div>
+  );
+}

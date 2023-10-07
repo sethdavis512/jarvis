@@ -1,19 +1,19 @@
-export default function (plop) {
-    plop.setGenerator('ts-component', {
-        description: 'A React component and unit test written in Typescript',
+export default function ({ setGenerator }) {
+    setGenerator('remix-route', {
+        description: 'Remix route in Typescript',
         prompts: [
             {
                 type: 'input',
                 name: 'name',
-                message: 'Component name'
+                message: 'Name'
             }
         ],
         actions: [
             {
                 type: 'addMany',
-                destination: `${process.cwd()}/{{ pascalCase name }}`,
-                templateFiles: 'plop-templates/ts-component',
-                base: 'plop-templates/ts-component'
+                destination: process.cwd(),
+                templateFiles: 'plop-templates/remix-route/**/*.hbs',
+                base: 'plop-templates/remix-route'
             }
         ]
     });
