@@ -1,0 +1,44 @@
+import { useReducer } from 'react';
+
+type MachineSpec = {
+    initialState: string;
+    states: Record<string, Record<string, string>>;
+};
+
+export const machineSpec: MachineSpec = {
+    initialState: 'disconnected',
+    states: {
+        disconnected: {
+            CONNECT: 'connecting'
+        },
+        connecting: {
+            CONNECTION_SUCCESS: 'connected'
+        },
+        connected: {
+            DISCONNECT: 'disconnected'
+        }
+    }
+};
+
+type MachineReducer = (currentState: string, event: string) => string;
+
+export const buildMachineReducer = (spec: MachineSpec): MachineReducer => (currentState, event) => {
+    const stateTransitions = spec.states[currentState];
+
+    if (stateTransitions === undefined) {
+        throw new Error(`No transitions defined for ${currentState}`);
+    }
+
+    const nextState = stateTransitions[event];
+
+    if (nextState === undefined) {
+        throw new Error(
+            `Unknown transition for event ${event} in state ${currentState}`
+        );
+    }
+
+    return nextState;
+};
+
+export const useStateMachine = (spec: MachineSpec) =>
+    useReducer(buildMachineReducer(spec), spec.initialState);
