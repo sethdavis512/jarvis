@@ -1,5 +1,5 @@
 export default function (plop) {
-    plop.setGenerator('ts-component', {
+    plop.setGenerator('react-component', {
         description: 'A React component and unit test written in Typescript',
         prompts: [
             {
@@ -12,8 +12,8 @@ export default function (plop) {
             {
                 type: 'addMany',
                 destination: `${process.cwd()}/{{ pascalCase name }}`,
-                templateFiles: 'plop-templates/ts-component',
-                base: 'plop-templates/ts-component'
+                templateFiles: 'plop-templates/react-component',
+                base: 'plop-templates/react-component'
             }
         ]
     });
