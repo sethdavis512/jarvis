@@ -1,19 +1,34 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import os from 'os';
 
 const fetchTodos = async () => {
-    return fetch('https://jsonplaceholder.typicode.com/todos').then(
-        (response) => response.json()
-    );
+    try {
+        const response = await fetch(
+            'https://jsonplaceholder.typicode.com/todos'
+        );
+        const json = response.json();
+
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 const read = async (filePath) => {
-    return new Promise((resolve, reject) => {
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) reject(err);
-            resolve(data);
-        });
-    });
+    try {
+        const fileContents = await fs.readFile(
+            filePath,
+            'utf8',
+            (err, data) => {
+                if (err) console.error(err);
+                return data;
+            }
+        );
+
+        return fileContents;
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export default function ({ setGenerator }) {
